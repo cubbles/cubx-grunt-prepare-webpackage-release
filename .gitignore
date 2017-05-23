@@ -29,6 +29,3 @@ node_modules
 
 # WebStorm project-config
 .idea
-
-# workspace within the devtools (because it's for devtools development only)
-webpackages
