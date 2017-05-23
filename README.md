@@ -1,28 +1,28 @@
-# cubx-grunt-set-webpackage-version
+# cubx-grunt-prepare-webpackage-release
 
-[![Build Status](https://travis-ci.org/cubbles/cubx-grunt-set-webpackage-version.svg?branch=master)](https://travis-ci.org/cubbles/cubx-grunt-set-webpackage-version)
+[![Build Status](https://travis-ci.org/cubbles/cubx-grunt-prepare-webpackage-release.svg?branch=master)](https://travis-ci.org/cubbles/cubx-grunt-prepare-webpackage-release)
 
-Grunt plugin for setting the version of a webpackage
+Grunt plugin for preparing and finishing the release of a webpackage
 
 ## Usage:
 
-### default
+### Default
 
-install the grunt plugin 
+Install the grunt plugin 
 
 ```
-npm install cubx-grunt-set-webpackage-version --save-dev
+npm install cubx-grunt-prepare-webpackage-release --save-dev
 ```
 
 Gruntfile
 
-* load the grunt plugin
+* Load the grunt plugin
     
 ```    
-grunt.loadNpmTasks(cubx-grunt-set-webpackage-version)
+grunt.loadNpmTasks(cubx-grunt-prepare-webpackage-release)
 ```
         
-* set config (path to webpackage to convert 
+* Set config (path to webpackage to convert 
     
 ```        
 grunt.initConfig({
@@ -35,5 +35,5 @@ grunt.initConfig({
 * Just install grunt plugin
   
 ```
-npm install -set-webpackage-version --save
+npm install cubx-grunt-prepare-webpackage-release --save
 ```
