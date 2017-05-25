@@ -40,7 +40,7 @@
     manifest.version = initialVersion;
     fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2), 'utf8');
   });
-  describe('run grunt task "+webpackage-prepareRelease", webpackage path configured in param.src', function () {
+  describe('run grunt task "_webpackage-prepareRelease", webpackage path configured in param.src', function () {
     var releaseVersion;
     beforeEach(function () {
       // Init config
@@ -56,14 +56,14 @@
     });
     it('should throw error since provided nextVersion is invalid', function (done) {
       process.nextTick(function () { stdin.send(defaultNextVersion + '\n'); });
-      grunt.tasks([ '+webpackage-prepareRelease' ], {}, expect(function b () {
+      grunt.tasks([ '_webpackage-prepareRelease' ], {}, expect(function b () {
         done();
       }).to.throw(/Invalid releaseVersion/));
     });
     it('should prepare the webpackage to be released', function (done) {
       process.nextTick(function () { stdin.send(releaseVersion + '\n'); });
 
-      grunt.tasks([ '+webpackage-prepareRelease' ], {}, function () {
+      grunt.tasks([ '_webpackage-prepareRelease' ], {}, function () {
         fs.readFile(manifestPath, 'utf8', function (err, data) {
           if (err) {
             throw new Error(err);
@@ -78,7 +78,7 @@
     it('should prepare the webpackage to be released using the default releaseVersion', function (done) {
       process.nextTick(function () { stdin.send('\n'); });
 
-      grunt.tasks([ '+webpackage-prepareRelease' ], {}, function () {
+      grunt.tasks([ '_webpackage-prepareRelease' ], {}, function () {
         fs.readFile(manifestPath, 'utf8', function (err, data) {
           if (err) {
             throw new Error(err);
@@ -91,7 +91,7 @@
       });
     });
   });
-  describe('run grunt task "+webpackage-prepareRelease", webpackage path configured in webpackagepath', function () {
+  describe('run grunt task "_webpackage-prepareRelease", webpackage path configured in webpackagepath', function () {
     var releaseVersion;
     beforeEach(function () {
       // Init config
@@ -106,7 +106,7 @@
     it('should prepare the webpackage to be released', function (done) {
       process.nextTick(function () { stdin.send(releaseVersion + '\n'); });
 
-      grunt.tasks([ '+webpackage-prepareRelease' ], {}, function () {
+      grunt.tasks([ '_webpackage-prepareRelease' ], {}, function () {
         fs.readFile(manifestPath, 'utf8', function (err, data) {
           if (err) {
             throw new Error(err);
@@ -119,7 +119,7 @@
       });
     });
   });
-  describe('run grunt task "+webpackage-updateToNextVersion", webpackage path configured in param.src', function () {
+  describe('run grunt task "_webpackage-updateToNextVersion", webpackage path configured in param.src', function () {
     var nextVersion;
     beforeEach(function () {
       // Init config
@@ -135,14 +135,14 @@
     });
     it('should throw error since provided nextVersion is invalid', function (done) {
       process.nextTick(function () { stdin.send(defaultReleaseVersion + '\n'); });
-      grunt.tasks([ '+webpackage-updateToNextVersion' ], {}, expect(function a () {
+      grunt.tasks([ '_webpackage-updateToNextVersion' ], {}, expect(function a () {
         done();
       }).to.throw(/Invalid nextVersion/));
     });
     it('should update manifest version to nextVersion', function (done) {
       process.nextTick(function () { stdin.send(nextVersion + '\n'); });
 
-      grunt.tasks([ '+webpackage-updateToNextVersion' ], {}, function () {
+      grunt.tasks([ '_webpackage-updateToNextVersion' ], {}, function () {
         fs.readFile(manifestPath, 'utf8', function (err, data) {
           if (err) {
             throw new Error(err);
@@ -156,7 +156,7 @@
     });
     it('should update manifest version to default nextVersion', function (done) {
       process.nextTick(function () { stdin.send('\n'); });
-      grunt.tasks([ '+webpackage-updateToNextVersion' ], {}, function () {
+      grunt.tasks([ '_webpackage-updateToNextVersion' ], {}, function () {
         fs.readFile(manifestPath, 'utf8', function (err, data) {
           if (err) {
             throw new Error(err);

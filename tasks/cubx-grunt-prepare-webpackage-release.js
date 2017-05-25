@@ -3,7 +3,7 @@ var inquirer = require('inquirer');
 var WebpackageReleasePreparer = require('cubx-prepare-webpackage-release');
 
 module.exports = function (grunt) {
-  grunt.registerTask('+webpackage-prepareRelease', 'Prepare the release of a webpackage', function () {
+  grunt.registerTask('_webpackage-prepareRelease', 'Prepare the release of a webpackage', function () {
     var webpackagePath = grunt.config.get('param.src');
 
     if (!webpackagePath) {
@@ -41,7 +41,7 @@ module.exports = function (grunt) {
       done();
     });
   });
-  grunt.registerTask('+webpackage-updateToNextVersion', 'Update manifest to next development version', function () {
+  grunt.registerTask('_webpackage-updateToNextVersion', 'Update manifest to next development version', function () {
     var webpackagePath = grunt.config.get('param.src');
 
     if (!webpackagePath) {
