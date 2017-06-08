@@ -13,7 +13,9 @@ module.exports = function (grunt) {
       throw new Error('webpackagePath missed. Please defined the option webpackagePath.');
     }
     var wpReleasePreparer = new WebpackageReleasePreparer(webpackagePath);
-    var defaultReleaseV = wpReleasePreparer.getDefaultReleaseVersion(wpReleasePreparer.getCurrentVersion());
+    var currentVersion = wpReleasePreparer.getCurrentVersion();
+    var defaultReleaseV = wpReleasePreparer.isValidReleaseVersion(currentVersion)
+      ? currentVersion : wpReleasePreparer.getDefaultReleaseVersion(currentVersion);
 
     var options = {
       questions: [

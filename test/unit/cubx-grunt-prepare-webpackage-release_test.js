@@ -10,6 +10,7 @@
   var path;
   var testRootPath;
   var manifestPath;
+  var fixedManifestPath;
   var testPath;
   var initialVersion;
   var defaultReleaseVersion;
@@ -28,6 +29,7 @@
     testRootPath = path.join(process.cwd(), 'test');
     testPath = path.resolve(testRootPath, 'webpackages', webpackageName);
     manifestPath = path.resolve(testPath, 'manifest.webpackage');
+    fixedManifestPath = path.resolve(testPath, 'fixed_manifest.webpackage');
 
     grunt = require('grunt');
     grunt.task.init = function () {};
@@ -39,6 +41,10 @@
     var manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
     manifest.version = initialVersion;
     fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2), 'utf8');
+
+    var fixedManifest = JSON.parse(fs.readFileSync(fixedManifestPath, 'utf8'));
+    fixedManifest.version = defaultReleaseVersion;
+    fs.writeFileSync(fixedManifestPath, JSON.stringify(fixedManifest, null, 2), 'utf8');
   });
   describe('run grunt task "_webpackage-prepareRelease", webpackage path configured in param.src', function () {
     var releaseVersion;
@@ -80,6 +86,21 @@
 
       grunt.tasks([ '_webpackage-prepareRelease' ], {}, function () {
         fs.readFile(manifestPath, 'utf8', function (err, data) {
+          if (err) {
+            throw new Error(err);
+          } else {
+            var manifest = JSON.parse(data);
+            manifest.should.have.property('version', defaultReleaseVersion);
+          }
+          done();
+        });
+      });
+    });
+    it('should prepare the webpackage to be released using the current manifest releaseVersion', function (done) {
+      process.nextTick(function () { stdin.send('\n'); });
+
+      grunt.tasks([ '_webpackage-prepareRelease' ], {}, function () {
+        fs.readFile(fixedManifestPath, 'utf8', function (err, data) {
           if (err) {
             throw new Error(err);
           } else {
