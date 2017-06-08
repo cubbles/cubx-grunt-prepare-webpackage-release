@@ -1,6 +1,6 @@
 {
   "name": "cubx-grunt-prepare-webpackage-release",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Grunt task for releasing a webpackage",
   "scripts": {
     "prepublish": "npm run lint",
